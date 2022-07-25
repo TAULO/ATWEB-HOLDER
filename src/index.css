@@ -1,0 +1,137 @@
+:root {
+    /* possible colors:
+    --element-text-color: #143d59; (blue)
+    --body-background-color: #1B1B1B; (black)
+    --body-background-color: #2C3539; (grey-black)
+    --body-background-color: #1A1110; (brown-black)
+    */
+
+    /* (standard design white/orange theme) */
+    /* --body-background-color: #fff;
+    --header-footer-color: #ed7666;
+    --element-background-color: cornsilk;
+    --element-text-color: #4056a1;
+    --header-footer-text-color: cornsilk;
+    --exhibition-lines-color: #ed7666; */
+
+    /* (red/pink theme) */
+    /* --body-background-color: #e3e2df;
+    --header-footer-color: #5d001e;
+    --element-background-color: #9a1750;
+    --element-text-color: #e3afbc;
+    --header-footer-text-color: #e3afbc;
+    --exhibition-lines-color: #5d001e; */
+
+    /* lightblue/blue theme with sand header/footer text  */
+    /* --body-background-color: #efe2ba;
+    --header-footer-color: #4056a1;
+    --element-background-color: #4056a1;
+    --element-text-color: #c5cbe3;
+    --header-footer-text-color: #d79922;
+    --exhibition-lines-color: #d79922; */
+
+    /* lightblue/blue theme */
+    /* --body-background-color: #efe2ba;
+    --header-footer-color: #4056a1;
+    --element-background-color: #4056a1;
+    --element-text-color: #c5cbe3;
+    --header-footer-text-color: #c5cbe3;
+    --exhibition-lines-color: #d79922; */
+
+    /* pink/white theme */
+    /* --body-background-color: #AC3b61;
+    --header-footer-color: #EEE2dc;
+    --element-background-color: #EEE2dc;
+    --element-text-color: #AC3b61;
+    --header-footer-text-color: #AC3b61;
+    --exhibition-lines-color: #AC3b61; */
+
+    /* white/grey/orange theme */
+    --body-background-color: #e9e7dc;
+    --element-background-color: #e9e7dc;
+    --element-text-color: #6d6c6a;
+    --header-footer-text-color: #e9e7dc;
+    --exhibition-lines-color: #E85A4F;
+    --header-background-color: #E85A4F;
+    --footer-background-color: #E85A4F;
+
+
+/*     
+    --body-background-color: #EAE7DC;
+    --element-background-color: #EAE7DC;
+    --element-text-color: #6d6c6a;
+    --header-footer-text-color: #E85A4F;
+    --exhibition-lines-color: #E85A4F; */
+
+    /* orange/white theme */
+    /* --body-background-color: #EAE7DC;
+    --header-footer-color: #E85A4F;
+    --element-background-color: #E85A4F;
+    --element-text-color: #EAE7DC;
+    --header-footer-text-color: #EAE7DC;
+    --exhibition-lines-color: #EAE7DC; */
+
+    /* pink/lightgrey theme */
+    /* --body-background-color: #2d283E;
+    --header-footer-color: #802BB1;
+    --element-background-color: #D1D7E0;
+    --element-text-color: #564F6F;
+    --header-footer-text-color: #D1D7E0;
+    --exhibition-lines-color: #802BB1; */
+
+    /* lightblue and blue theme (without header and footer)  */
+    /* --body-background-color: #051622;
+    --header-footer-color: #051622;
+    --element-background-color: #EF0D50;
+    --element-text-color: #1D1D2C;
+    --header-footer-text-color: #1BA098;
+    --exhibition-lines-color: #1BA098; */
+
+    /* red and lightblue (without header and footer) */
+    /* --body-background-color: #E1F2F7;
+    --header-footer-color: #E1F2F7;
+    --element-background-color: #EF0D50;
+    --element-text-color: #E1F2F7;
+    --header-footer-text-color: #EB3A70;
+    --exhibition-lines-color: #E5BACE; */
+
+    /* red and lightblue pretty nice (without header and footer) */
+    /* --body-background-color: #FE4A49;
+    --header-footer-color: #FE4A49;
+    --element-background-color: #4AD7D1;
+    --element-text-color: #425664;
+    --header-footer-text-color: #F6F4F2;
+    --exhibition-lines-color: #FE4A49; */
+
+    /* blue/white/turquise theme */
+    /* --body-background-color: #222831;
+    --header-footer-color: #222831;
+    --element-background-color: #00ADB5;
+    --element-text-color: #EEEEEE;
+    --header-footer-text-color: #EEEEEE;
+    --exhibition-lines-color: #EEEEEE; */
+}
+
+body {
+    background-color: var(--body-background-color);
+    margin: 0px;
+    padding: 0px;
+    min-height: 100%;
+}
+
+img {
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+ul{
+    list-style-type: none;
+}
+
+a {
+    color: var(--header-footer-text-color);
+}
+
+h1 {
+    font-family:'Times New Roman', Times, serif;
+}
+

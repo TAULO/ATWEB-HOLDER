@@ -1,0 +1,10 @@
+.exhibition-form-container {
+    padding: 3rem;
+}
+
+.exhibition-flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+}

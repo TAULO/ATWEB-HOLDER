@@ -1,0 +1,63 @@
+.header {
+    padding: 30px;
+    margin: 0px;
+    /* background-color: #143d59; */
+    background-color: var(--header-background-color);
+    top: 0;
+    color: var(--header-footer-text-color);
+    /* color: #e9e7dc; */
+}
+
+#header-home-text{
+    display:inline-block;
+    position: relative;
+    top: 7px;
+    left: 50px;
+    display: block;
+    margin: 0px;
+    font-family: "Savoye LET";
+    font-size: 50px;
+    justify-content: center;
+    width: 180px;
+    /* padding-top: 100px; */
+}
+
+@media only screen and (max-width: 400px) {
+    #header-home-text {
+        left: 0px;
+        font-size: 30px;
+    }
+}
+
+#header-home-text:hover {
+    cursor: pointer;
+}
+
+#header-list-links {
+    padding-right: 25px;
+    font-size: larger;
+    text-decoration: underline;
+    text-underline-offset: 5px;   
+}
+
+@media only screen and (max-width: 400px) {
+    #header-list-links {
+        font-size: 10px;
+        padding-right: 5px;
+    }
+}
+
+#header-list-links:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#list {
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    display: inline-flex;
+    top: 50px;
+    right: 60px;
+}
+

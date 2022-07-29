@@ -1,16 +1,20 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import "./Header.css"
 import {useNavigate, Link} from "react-router-dom"
 
 function Header() {
     const navigate = useNavigate();
 
-    const goToAbout = () => {
+    const goToAbout = (e) => {
         const aboutElement = document.getElementsByClassName("main-container")[0]
         if (aboutElement !== null && aboutElement !== undefined) {
             aboutElement.scrollIntoView({behavior:"smooth"})
         } else {
             navigate("/")
+            // console.log(e.target.readyState)
+            // if (e.target.readyState === "complete") {
+            //     document.getElementsByClassName("main-container")[0].scrollIntoView({behavior: "smooth"})
+            // }
             setTimeout(() => {
                 document.getElementsByClassName("main-container")[0].scrollIntoView({behavior: "smooth"})
             }, 1200)
@@ -27,6 +31,7 @@ function Header() {
                     {/* <li id="header-list-links">INSTAGRAM</li> */}
                     <div id="header-list-links" onClick={goToAbout}>OM</div>
                     <Link to="/udstillinger" id="header-list-links">UDSTILLINGER</Link>
+                    {/* <div id="header-list-links">MINE MALERIER</div> */}
                 </div>
         </div>
      );

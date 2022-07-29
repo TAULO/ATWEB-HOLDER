@@ -1,11 +1,9 @@
 .header {
     padding: 30px;
     margin: 0px;
-    /* background-color: #143d59; */
     background-color: var(--header-background-color);
     top: 0;
     color: var(--header-footer-text-color);
-    /* color: #e9e7dc; */
 }
 
 #header-home-text{
@@ -19,7 +17,6 @@
     font-size: 50px;
     justify-content: center;
     width: 180px;
-    /* padding-top: 100px; */
 }
 
 @media only screen and (max-width: 400px) {

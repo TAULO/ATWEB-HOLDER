@@ -7,13 +7,32 @@ import SubscribeForm from "../subscribeForm/SubscribeForm";
 function ExhibitionTemplate() {
     const [exhibition, setExhibition] = useState([])
     
+    // fetch exhibitions from firebase db
     useEffect(() => {
+        const firebase = new Firebase()
         async function fetchExhibitions() {
-            const firebase = new Firebase()
             setExhibition(await firebase.getExhibitonFromDB())
         }
         fetchExhibitions()
     }, [])
+
+    //keeps tracks on expired exhibitions and deletes them if expired
+    useEffect(() => {
+        let dates = []
+        const date = new Date()
+        const firebase = new Firebase()
+        function deleteExpiredExhibitions() {
+            for (let i = 0; i < exhibition.length; i++) {
+                if (exhibition[i] !== undefined) {
+                    dates = exhibition.map(currDate => new Date(currDate.endDate.split("T")[0]))
+                }
+                if (date.getDay() > dates[i].getDay() && date.getMonth() >= dates[i].getMonth()) {
+                    firebase.deleteExhiptionFromDB(exhibition[i].title)
+                }
+            }
+        }
+        deleteExpiredExhibitions()
+    }, [exhibition])
 
     if (exhibition.length > 0) {
         return (

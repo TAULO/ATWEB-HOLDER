@@ -1,0 +1,24 @@
+:root{
+    --body-background-color: #e9e7dc;
+    --element-background-color: #e9e7dc;
+    --element-text-color: #6d6c6a;
+    --header-footer-text-color: #e9e7dc;
+    --exhibition-lines-color: #E85A4F;
+    --header-background-color: #E85A4F;
+    --footer-background-color: #E85A4F;
+}
+
+.body {
+    background-color: var(--header-background-color);
+}
+
+.email-body-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: var(--header-footer-text-color);
+}
+
+#email-body-text {
+
+}

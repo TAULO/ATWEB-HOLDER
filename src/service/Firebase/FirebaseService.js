@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, setDoc } from 'firebase/firestore/lite';
 import { uploadBytes, getStorage, ref, getDownloadURL } from "firebase/storage"
 import { getAuth } from "firebase/auth"
+import fetch from 'node-fetch';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAtVqPYeAhzVA43mig1fg44Ylg8VblWRNo",
@@ -24,6 +26,7 @@ const _collectionEmailAdresses = "SubscribersEmail"
 // Initialize Firebase database
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
+
 const dbRef = collection(db, _collection)
 const dbRef2 = collection(db, _collectionExhibition)
 const dbRef3 = collection(db, _collectionEmailAdresses)
@@ -76,7 +79,6 @@ class Firebase {
     }
 
     // ------------------DATABASE (EXHIBITION)------------------
-
     async saveExhiptionToDB(title, description, address, startDate, endDate, url) {
         const docRef = doc(db, _collectionExhibition, title)
         return await setDoc(docRef, {
@@ -99,6 +101,12 @@ class Firebase {
         return data;
     }
 
+    async deleteExhiptionFromDB(title) {
+        return await deleteDoc(doc(db, _collectionExhibition, title))
+        .then(console.log("[DATABASE]", "Deleted:", title, "from exhibitions database"))
+        .catch(e => console.log("[DATABASE]", "Error when trying to delete:", title, e))
+    }
+
     // ------------------DATABASE (EMAIL ADRESSES)------------------
     async saveEmailAddressesToDB(email) {
         const docRef = doc(db, _collectionEmailAdresses, email)
@@ -115,6 +123,18 @@ class Firebase {
             data.push(doc.data())
         })
         return data;
+    }
+
+    // nylas API 
+    async sendEmails() {
+        const response = await fetch("http://localhost:4003/", {
+            method: "get",
+        })
+        if (response.status === 200) {
+            console.log("Request Succeeded")
+        } else {
+            console.log("Request failed")
+        }
     }
 }
 

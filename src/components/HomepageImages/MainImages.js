@@ -9,14 +9,11 @@ function MainImages() {
     const currentImageRef = useRef(null)
 
     // times until next image will show. 
-    // THIS DELAY MUST MATCH ANIMATION TIME
-    const presentationDelay = 10000
+    // THIS DELAY MUST MATCH ANIMATION TIME!
+    const presentationDelay = 15000
 
-    useEffect(() => {
-        async function getFilesURLFromStorage() {
-            const firebase = new Firebase()
-            setImageFileURL(await firebase.getAllFilesFromDB())
-        }       
+    // image presentation slideshow loop
+    useEffect(() => {  
         setTimeout(() => {
             setImgIndex(imgIndex + 1)
             imgPrevIndexRef.current = imgIndex
@@ -24,15 +21,23 @@ function MainImages() {
                 setImgIndex(1)
             }
         }, presentationDelay)
-        getFilesURLFromStorage()
     }, [imageFileURL.length, imgIndex])
+
+    // firebase image files fetcher 
+    useEffect(() => {
+        async function getFilesURLFromStorage() {
+            const firebase = new Firebase()
+            setImageFileURL(await firebase.getAllFilesFromDB())
+        }     
+        getFilesURLFromStorage()
+    }, [])
 
     function displayImages() {
            return imageFileURL.map((item, index) => {
                 return (
                     <div key={index} className="main-column">
                         <li className="main-li-items">
-                             <img style={{display:"none"}} className="main-img-items" id={`item`} src={item.url} alt={item.name} onClick={() => window.open(item.url)}></img>   
+                            <img style={{display:"none"}} className="main-img-items" id={`item`} src={item.url} alt={item.name} onClick={() => window.open(item.url)}></img>   
                         </li>
                     </div>
                 )
@@ -54,13 +59,14 @@ function MainImages() {
             if (imageFileURL.length <= 1) { 
                 currentImageRef.current.children[0].style.display = "flex"
             } else {
-                const currentImage = currentImageRef.current.children[imgIndex - 1]
-                const prevImage = currentImageRef.current.children[imgPrevIndexRef.current - 1]
-                if (currentImage !== null) {
-                    currentImage.style.display = "flex"
-                    currentImage.style.animation = `fading-animation ${presentationDelay / 1000}s infinite`
-
-                    prevImage.style.display = "none"
+                if (currentImageRef.current.children !== null) {
+                    const currentImage = currentImageRef.current.children[imgIndex - 1]
+                    const prevImage = currentImageRef.current.children[imgPrevIndexRef.current - 1]
+                    if (currentImage !== null) {
+                        currentImage.style.display = "flex"
+                        currentImage.style.animation = `fading-animation ${presentationDelay / 1000}s infinite` 
+                        prevImage.style.display = "none"
+                    }
                 }
             }
         }, 500)
@@ -68,14 +74,16 @@ function MainImages() {
     }
     return (
         <div className="main-list-container">
-            <div>
-                <h1>
-                    Kom på besøg
+            <div className="main-text-container">
+                <h1 id="main-text-title">
+                    Kom på Besøg
                 <br></br> 
-                    og se mine kunstværker
+                    og se mine Kunstværker
                 </h1>
-                <p>
-                    Se udstillinger eller kontakt a-nett@hotmail.com for en privat udstilling hos mig
+                <p id="main-text-paragraph">
+                    Se <u>udstillinger</u> eller kontakt <u>a-nett@hotmail.com</u> 
+                    <br></br>
+                    for en privat udstilling hos mig.
                 </p>
             </div>
             <ul ref={currentImageRef}  className="main-list">

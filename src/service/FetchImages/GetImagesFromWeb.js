@@ -19,7 +19,7 @@ function GetImagesFromWeb(token) {
             setImgURL(data.data)
             } 
         getImages()
-    },[])
+    }, [])
 
     return imgURL;
 }

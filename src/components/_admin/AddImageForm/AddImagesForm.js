@@ -53,7 +53,7 @@ function AddImagesForm() {
         return imageFileURL.map((element, index) => {
             return (
                 <div key={index} className="admin-image-container">
-                    <li>
+                    <li id="admin-image-list">
                         <img id="admin-image" src={element.url} alt={element.name} onClick={() => setIsSelected(!isSelected)}></img>
                         <button onClick={deleteImage} value={element.name}>delete</button>
                     </li>

@@ -1,15 +1,25 @@
 .admin-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     padding: 30px;
+    background-color: var(--header-background-color);
+    color: var(--header-footer-text-color);
 }
-
 
 .admin-image-container {
     float:left;
+    padding: 0px;
+    margin: 0px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
+#admin-image-list {
+    border: 3px solid var(--header-footer-text-color);
+    padding: 20px;
+    border-radius: 10px;
+}
+ 
 #admin-image {
     display: flex;
     width: 200px;

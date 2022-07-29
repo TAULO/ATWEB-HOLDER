@@ -4,7 +4,7 @@
     padding: 1rem;
     padding-top: 2rem;
     padding-bottom: 6rem;
-    /* background-color: var(--header-background-color); */
+    background-color: var(--header-background-color);
 }
 
 .exhibiton-container {

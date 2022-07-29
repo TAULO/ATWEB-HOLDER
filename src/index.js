@@ -25,8 +25,8 @@ root.render(
       </Routes>
     <Footer />
     <Routes>
-      <Route path='/admin' element={<AddImagesForm></AddImagesForm>}></Route>
-      <Route path='/admin1' element={<AddExhibtionsForm></AddExhibtionsForm>}></Route>
+      <Route path='/admin/tilfoj-billeder' element={<AddImagesForm></AddImagesForm>}></Route>
+      <Route path='/admin/tilfoj-udstillinger' element={<AddExhibtionsForm></AddExhibtionsForm>}></Route>
     </Routes>
   </Router>
 );

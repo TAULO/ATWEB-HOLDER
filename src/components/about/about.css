@@ -2,7 +2,12 @@
     display: flex;
     justify-content: center;
     padding: 50px;
-    margin-bottom: 30px;
+    /* margin: 30px; */
+
+    box-shadow: inset 2px 5px 20px #555;
+
+
+    /* border-radius: 5px; */
 }
 
 .about-container {  
@@ -11,6 +16,7 @@
     height: auto;
     width: 60%;
     flex-direction: column;
+    margin-bottom: 40px;
 }
 
 #about-title {

@@ -3,12 +3,13 @@ import "./AddExhibitionsForm.css"
 import { useState } from "react";
 import Firebase from "../../../service/Firebase/FirebaseService";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCoffee } from '@fortawesome/fontawesome-free-solid'
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 
 
 function AddExhibtionsForm() {
+    const PORT = 510
+
     const firebase = new Firebase()
 
     const [title, setTitle] = useState("")
@@ -28,11 +29,38 @@ function AddExhibtionsForm() {
         fetchExhibitions()    
     }, [])
 
-    const handleOnClick = async (e) => {
+    // implement checkbox so it is optimal to send mail
+    const sendNewExhibitionEmail = async () => {
+        const emailCheckbox = document.getElementById("admin-exhibition-email-checkbox")
+        if (!emailCheckbox.checked) {
+            return; 
+        } else {
+            const payload = {
+                title: title,
+                description: description,
+                address: address,
+                startDate: startDate,
+                endDate: endDate,
+                file: file
+            }
+            await fetch(`http://localhost:${PORT}/new-exhibition`, {
+                mode:"cors",
+                method: "POST", 
+                headers: {'Content-Type': 'application/json'},
+                // headers: {"content-type":"application/x-www-form-urlencoded"},
+                // headers: {"content-type": "multipart/form-data"},
+                body: JSON.stringify(payload)
+            })
+            console.log(payload)
+        }
+    }
+
+    const uploadExhibition = async (e) => {
         e.preventDefault()
-        firebase.uploadFilesToStorage(file[0].name, file[0], file[0].type)
-        .then(firebase.saveExhiptionToDB(title, description, address, startDate, endDate, await firebase.getFilesURLFromStorage(file[0].name)))
-        setTimeout(() => window.location.reload(), 500);
+        // firebase.uploadFilesToStorage(file[0].name, file[0], file[0].type)
+        // .then(firebase.saveExhiptionToDB(title, description, address, startDate, endDate, await firebase.getFilesURLFromStorage(file[0].name)))
+        // setTimeout(() => window.location.reload(), 500);
+        sendNewExhibitionEmail()
     }
 
     function deleteExhibition() {
@@ -44,35 +72,35 @@ function AddExhibtionsForm() {
     }
 
     function previewTitle(e) {
-        const titleText = document.getElementById("exhibiton-title").childNodes[0].innerHTML = e.target.value
+        document.getElementById("exhibiton-title").childNodes[0].innerHTML = e.target.value
     }
 
     // image MUST currently already be saved in firebase storage
     async function previewImage(e) {
         const currImageFile = e.target.files[0].name
-        const imageFile = document.getElementById("exhibiton-image").childNodes[0].src = await firebase.getFilesURLFromStorage(currImageFile)
+        document.getElementById("exhibiton-image").childNodes[0].src = await firebase.getFilesURLFromStorage(currImageFile)
     }
 
     function previewDescription(e) {
-        const descriptionText = document.getElementById("exhibiton-description").innerHTML = e.target.value
+        document.getElementById("exhibiton-description").innerHTML = e.target.value
     }
 
     function previewAddress(e) {
-        const addressText = document.getElementById("exhibiton-adress").innerHTML = e.target.value
+        document.getElementById("exhibiton-adress").innerHTML = e.target.value
     }
 
     // DET ER MULIGT AT VÆLGE EN SLUTDATO FØR STARDATOEN
     function previewStartDate(e) {
-        const startDateText = document.getElementById("exhibiton-start-date-text").innerHTML = e.target.value.replace("T", " kl ")
+        document.getElementById("exhibiton-start-date-text").innerHTML = e.target.value.replace("T", " kl ")
     }
 
     function previewEndDate(e) {
-        const endDateText = document.getElementById("exhibiton-end-date-text").innerHTML = e.target.value.replace("T", " kl ")
-
+       document.getElementById("exhibiton-end-date-text").innerHTML = e.target.value.replace("T", " kl ")
     }
+
     return (
         <div className="admin-exhibition-form-container">
-            <form>
+            <form action={`http://localhost:${PORT}/new-exhibition`} method="POST">
                 <div className="admin-exhibition-form-flex-container">
                     <label>Titel</label>
                     <input minLength="1" maxLength="40" value={title} onChange={e => {setTitle(e.target.value); previewTitle(e)}}></input>
@@ -92,7 +120,12 @@ function AddExhibtionsForm() {
                     <label>Billede</label>
                     <input type="file" file={file} onChange={e => {setFile(e.target.files); previewImage(e)}}></input>
                     <br></br>
-                    <button onClick={handleOnClick}>OK</button>
+                    <div>
+                        <input type="checkbox" id="admin-exhibition-email-checkbox"></input>
+                        <label>Send Email</label>
+                    </div>
+                    <br></br>
+                    <button onClick={uploadExhibition}>OK</button>
                 </div>
             </form>
             <div className="admin-exhibition-added-container">

@@ -22,6 +22,7 @@
 #main-text-title {
     font-size: 55px;
     text-align: center;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }
 
 #main-text-paragraph {

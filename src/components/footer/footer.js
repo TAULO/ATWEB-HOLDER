@@ -1,6 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram } from "@fortawesome/free-brands-svg-icons"
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
 
 import "./footer.css"
 
@@ -8,11 +10,13 @@ function Footer() {
     return ( 
             <div className="footer">
                 <div id="telf-container">
-                    Telf: 45+ 00 11 22 33
+                    <FontAwesomeIcon icon={faPhone} id="telf-icon"></FontAwesomeIcon>
+                    45+ 22 95 55 88
                 </div>
                 
                 <div id="mail-container">
-                    e-mail: email123@hotmail.com
+                    <FontAwesomeIcon icon={faMailBulk} id="mail-icon"></FontAwesomeIcon>
+                    a-nett@live.dk
                 </div>
 
                 <div id="instagram-icon-container">

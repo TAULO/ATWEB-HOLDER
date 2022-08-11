@@ -1,5 +1,6 @@
 .admin-exhibition-form-container {
-    padding: 3rem;
+    padding-left: 5rem;
+    box-sizing: border-box;
     display: flex;
     align-content: space-between;
     width: 100%;
@@ -17,7 +18,7 @@
 }
 
 .admin-exhibition-added-container {
-    margin-left: 50px;
+    margin-left: 75px;
     display: flex;
     flex-direction: column;
 }

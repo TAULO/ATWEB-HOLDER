@@ -3,16 +3,19 @@ import Firebase from "../../service/Firebase/FirebaseService";
 import "./SubscribeForm.css"
 
 function SubscribeForm() {
-    async function handleOnClick(e)  {
+
+    async function sendWelcomeEmail(e)  {
+        const PORT = 510
+
         e.preventDefault()
-        const email = document.getElementById("subscribe-form-input").value
-        fetch("http://localhost:5012/welcome", {
-            mode: 'no-cors',
+        const data = document.getElementById("subscribe-form-input").value
+        const email = {email: data}
+        
+        await fetch(`http://localhost:${PORT}/welcome`, {
+            mode: "cors",
             method: "POST",
-            headers: {
-                'Content-Type': 'text/html'
-            },
-            body: email
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(email)
         })
         console.log("post send: ", email)
     }
@@ -29,7 +32,7 @@ function SubscribeForm() {
                     </p>
                 </div>
                 <div className="subscribe-form-input-container">
-                    <form onSubmit={handleOnClick} id="contact-form">
+                    <form onSubmit={sendWelcomeEmail} id="contact-form">
                         <input type="hidden" id="message" name="message" value="hello from:D"></input>
                         <input type="hidden" id="reply_to" name="reply_to"></input>
                         <input type="email" id="subscribe-form-input" placeholder="Email Adresse" required></input>

@@ -124,18 +124,6 @@ class Firebase {
         })
         return data;
     }
-
-    // nylas API 
-    async sendEmails() {
-        const response = await fetch("http://localhost:4003/", {
-            method: "get",
-        })
-        if (response.status === 200) {
-            console.log("Request Succeeded")
-        } else {
-            console.log("Request failed")
-        }
-    }
 }
 
 export default Firebase

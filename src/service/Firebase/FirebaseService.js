@@ -107,6 +107,15 @@ class Firebase {
         .catch(e => console.log("[DATABASE]", "Error when trying to delete:", title, e))
     }
 
+    // async filterExhibitionsNameAsc() {
+    //     const data = []
+    //     const querySnapshot = await getDocs(dbRef2)
+    //     querySnapshot.forEach(doc => {
+    //         data.push(doc.)
+    //     })
+    //     return data;
+    // }
+
     // ------------------DATABASE (EMAIL ADRESSES)------------------
     async saveEmailAddressesToDB(email) {
         const docRef = doc(db, _collectionEmailAdresses, email)

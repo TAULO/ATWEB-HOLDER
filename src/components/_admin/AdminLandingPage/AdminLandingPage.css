@@ -1,0 +1,31 @@
+.admin-landing-container {
+    display: flex;
+    padding: 100px;
+    text-align: center;
+    justify-content: space-between;
+    width: 30%;
+}
+
+#admin-landing-add-pictures > img {
+    background-color: red;
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+}
+
+#admin-landing-add-pictures:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#admin-landing-add-exhibitions > img {
+    width: 250px;
+    height: 250px;
+    background-color: red;
+    border-radius: 10px;
+}
+
+#admin-landing-add-exhibitions:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}

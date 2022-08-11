@@ -9,7 +9,6 @@ import GetImagesFromWeb from "../../service/FetchImages/GetImagesFromWeb"
 
 function InstagramImages() {
     const arrMediaURL = GetImagesFromWeb(process.env.REACT_APP_INSTAGRAM_TOKEN_MOM)
-
     const showImages = () => {
         return arrMediaURL.map((item, index) => {
                 return (<div key={index} className="column">

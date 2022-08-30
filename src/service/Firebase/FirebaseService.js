@@ -1,8 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, setDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, deleteDoc, doc, setDoc, orderBy, query } from 'firebase/firestore/lite';
 import { uploadBytes, getStorage, ref, getDownloadURL } from "firebase/storage"
 import { getAuth } from "firebase/auth"
-import fetch from 'node-fetch';
 
 
 const firebaseConfig = {
@@ -28,8 +27,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 const dbRef = collection(db, _collection)
-const dbRef2 = collection(db, _collectionExhibition)
-const dbRef3 = collection(db, _collectionEmailAdresses)
+const dbRefExhibition = collection(db, _collectionExhibition)
+const dbRefEmail = collection(db, _collectionEmailAdresses)
 
 // Initialize Firebase storage
 const storage = getStorage()
@@ -94,7 +93,7 @@ class Firebase {
 
     async getExhibitonFromDB() {
         const data = []
-        const querySnapshot = await getDocs(dbRef2)
+        const querySnapshot = await getDocs(dbRefExhibition)
         querySnapshot.forEach(doc => {
             data.push(doc.data())
         })
@@ -105,6 +104,16 @@ class Firebase {
         return await deleteDoc(doc(db, _collectionExhibition, title))
         .then(console.log("[DATABASE]", "Deleted:", title, "from exhibitions database"))
         .catch(e => console.log("[DATABASE]", "Error when trying to delete:", title, e))
+    }
+
+    async filterExhibitionStartDateAsc() {
+        const filterArr = []
+        const order = query(dbRefExhibition, orderBy("startDate", "asc"))
+        const docSnap = await getDocs(order)
+        docSnap.forEach(e => {
+            filterArr.push(e.data())
+        })
+        return filterArr
     }
 
     // ------------------DATABASE (EMAIL ADRESSES)------------------
@@ -118,7 +127,7 @@ class Firebase {
 
     async getEmailAddressesFromTB() {
         const data = []
-        const querySnapshot = await getDocs(dbRef3)
+        const querySnapshot = await getDocs(dbRefEmail)
         querySnapshot.forEach(doc => {
             data.push(doc.data())
         })

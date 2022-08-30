@@ -11,10 +11,6 @@ function Header() {
             aboutElement.scrollIntoView({behavior:"smooth"})
         } else {
             navigate("/")
-            // console.log(e.target.readyState)
-            // if (e.target.readyState === "complete") {
-            //     document.getElementsByClassName("main-container")[0].scrollIntoView({behavior: "smooth"})
-            // }
             setTimeout(() => {
                 document.getElementsByClassName("main-container")[0].scrollIntoView({behavior: "smooth"})
             }, 1200)
@@ -28,10 +24,8 @@ function Header() {
             </div>
                 <div id="list">
                     <Link to="/instagram" id="header-list-links">INSTAGRAM</Link>
-                    {/* <li id="header-list-links">INSTAGRAM</li> */}
-                    <div id="header-list-links" onClick={goToAbout}>OM</div>
+                    <div id="header-list-links" onClick={goToAbout}>MIG</div>
                     <Link to="/udstillinger" id="header-list-links">UDSTILLINGER</Link>
-                    {/* <div id="header-list-links">MINE MALERIER</div> */}
                 </div>
         </div>
      );

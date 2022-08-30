@@ -12,7 +12,6 @@ function InstagramImages() {
 
     // my API token 
     const arrMediaURL = GetImagesFromWeb("IGQVJWT0FRMVEyS3lRaVplZA0hYckl2eVNIcWZASUHRtQ2p4TDdWVFV6OVkxZAVVJbmpES3dzWlFyN0V4eUd0QVVvOElIeEtMeFI2WGo4LW9iTTJjVm50OU5pWW90Vy1DUldqc2pPSm1Ua2ZAiN3phNFJYUwZDZD")
-
     const showImages = () => {
         return arrMediaURL.map((item, index) => {
                 return (<div key={index} className="column">

@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import Firebase from "../../service/Firebase/FirebaseService";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "./ExhibitionTemplate.css"
 import SubscribeForm from "../subscribeForm/SubscribeForm";
 import FilterNewestBtn from "./FilterNewestBtn";
 
 function ExhibitionTemplate() {
+    const firebase = new Firebase()
+
     const [exhibition, setExhibition] = useState([])
+    const [filterIsVisible, setFilterIsVisible] = useState(false)
+
+    const filterItemsRef = useRef(null)
+    const filterNewestItemRef = useRef(null)
 
     // fetch exhibitions from firebase db
     useEffect(() => {
         async function fetchExhibitions() {
-            const firebase = new Firebase()
             setExhibition(await firebase.getExhibitonFromDB())
         }
         fetchExhibitions()
@@ -35,17 +40,42 @@ function ExhibitionTemplate() {
         deleteExpiredExhibitions()
     }, [exhibition])
 
-    async function filterDateAsc() {
-        // const firebase = new Firebase()
-        // setExhibition(await firebase.filterExhibitionStartDateAsc())
-        document.getElementsByClassName("filter-neweste-box-container")[0].style.display = "block"
-    } 
-    
+    function toggleFilterItems() {
+        filterItemsRef.current.style.animation = "growDown 400ms ease-in-out forwards"
+        setFilterIsVisible(!filterIsVisible)
+    }     
+
+    function filterNewestClick() {
+        filter(firebase.filterExhibitionStartDateAsc())
+    }
+
+    function filterOldestClick() {
+        filter()
+    }
+
+    function filterNameClick() {
+        filter()
+    }
+
+    async function filter(fitlerMethod) {
+        setExhibition(await fitlerMethod)
+        setFilterIsVisible(false)
+    }
+
+    const childProps = {
+        toggleFilterItems,
+        filterNewestClick,
+        filterOldestClick,
+        filterNameClick,
+        filterNewestItemRef,
+        filterItemsRef,
+        filterIsVisible,
+    }
    
     if (exhibition.length > 0) {
         return (
             <div className="exhibiton-landing-container">
-                <FilterNewestBtn filterDateAsc={filterDateAsc}></FilterNewestBtn>
+                <FilterNewestBtn {...childProps}></FilterNewestBtn>
                     {exhibition.map(element => {
                         return( 
                             <div className="exhibiton-main-container">

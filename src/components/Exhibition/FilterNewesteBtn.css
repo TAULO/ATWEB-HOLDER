@@ -6,11 +6,6 @@
     width: 100px;
 }
 
-.filter-neweste-btn-container:hover {
-    opacity: 0.5;
-    cursor: pointer;
-}
-
 #filter-neweste-btn-card {
     display: flex;
     border-radius: 10px;
@@ -25,18 +20,20 @@
     color: var(--element-background-color);
 }
 
+#filter-newest-btn-icon:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 #filter-neweste-btn-text {
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .filter-neweste-box-container {
-    display: none;
     background-color: var(--element-background-color);
     border-radius: 10px;
     margin-top: 10px;
-    animation: growDown 400ms ease-in-out forwards;
-    padding: 10px;
     text-align: center;
     transform-origin: top center;
 }
@@ -45,7 +42,17 @@
 #filter-neweste-box-items > * {
     display: block;
     padding: 15px;
+    border-bottom: 3px solid var(--header-background-color);
     /* padding-bottom: 20px; */
+}
+
+#filter-neweste-box-items :last-child {
+    border-bottom: none;
+}
+
+#filter-neweste-box-items > *:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 @keyframes growDown {
@@ -56,6 +63,18 @@
         transform: scaleY(1.1)
     }
     100% {
+        transform: scaleY(1)
+    }
+}
+
+@keyframes growUp {
+    100% {
+        transform: scaleY(0)
+    }
+    80% {
+        transform: scaleY(1.1)
+    }
+    0% {
         transform: scaleY(1)
     }
 }

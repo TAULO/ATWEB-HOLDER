@@ -7,6 +7,7 @@
     flex-wrap: wrap;
     background-color: var(--header-background-color);
     color: var(--header-footer-text-color);
+    overflow-wrap: break-word;
 }
 
 .admin-exhibition-form-flex-container {

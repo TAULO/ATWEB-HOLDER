@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import "./index.css"
-import Main from './components/main/Main';
-import InstagramImages from './components/instagramImages/InstagramImages';
+import LandingPage from './components/LandingPage/LandingPage';
+import InstagramImages from './components/InstagramImages/InstagramImages';
 import ExhibitionTemplate from './components/Exhibition/ExhibitionTemplate';
 import Header from "./components/header/Header"
 import Footer from './components/footer/footer';
@@ -18,7 +18,7 @@ root.render(
    <Router>
     <Header/>
       <Routes>
-        <Route path="/" element={<Main></Main>}></Route>
+        <Route path="/" element={<LandingPage></LandingPage>}></Route>
         <Route path='/instagram' element={<InstagramImages/>}></Route>
         <Route path='/udstillinger' element={<ExhibitionTemplate></ExhibitionTemplate>}></Route>
       </Routes>

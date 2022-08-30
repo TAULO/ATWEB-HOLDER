@@ -3,14 +3,15 @@ import Firebase from "../../service/Firebase/FirebaseService";
 import { useEffect } from "react";
 import "./ExhibitionTemplate.css"
 import SubscribeForm from "../subscribeForm/SubscribeForm";
+import FilterNewestBtn from "./FilterNewestBtn";
 
 function ExhibitionTemplate() {
     const [exhibition, setExhibition] = useState([])
-    
+
     // fetch exhibitions from firebase db
     useEffect(() => {
-        const firebase = new Firebase()
         async function fetchExhibitions() {
+            const firebase = new Firebase()
             setExhibition(await firebase.getExhibitonFromDB())
         }
         fetchExhibitions()
@@ -34,41 +35,53 @@ function ExhibitionTemplate() {
         deleteExpiredExhibitions()
     }, [exhibition])
 
+    async function filterDateAsc() {
+        // const firebase = new Firebase()
+        // setExhibition(await firebase.filterExhibitionStartDateAsc())
+        document.getElementsByClassName("filter-neweste-box-container")[0].style.display = "block"
+    } 
+    
+   
     if (exhibition.length > 0) {
         return (
-            exhibition.map(element => {
-                return( 
-                    <div className="exhibiton-main-container">
-                        <div className="exhibiton-container">
-                            <div id="exhibiton-title">
-                                <h1>{element.title}</h1>
-                            </div>
-                            <div id="exhibiton-image">
-                                <img src={element.url} alt=""></img>
-                            </div>
-                            <div className="exhibiton-flex-container">
-                                <div id="exhibiton-description">
-                                    {element.description}
-                                </div>
-                                <div id="exhibition-line"></div>
-                                <div id="exhibiton-adress">
-                                    {element.address}
-                                </div>
-                            </div>
-                            <div id="exhibiton-date-container">
-                                    <div id="exhibiton-start-date-text">
-                                        Starter Den: {element.startDate.replace("T", " kl ")}
+            <div className="exhibiton-landing-container">
+                <FilterNewestBtn filterDateAsc={filterDateAsc}></FilterNewestBtn>
+                    {exhibition.map(element => {
+                        return( 
+                            <div className="exhibiton-main-container">
+                                <div className="exhibiton-container">
+                                    <div id="exhibiton-title">
+                                        <h1>{element.title}</h1>
                                     </div>
-                                <div id="exhibition-start-date-line"></div>
-                                    <div id="exhibiton-end-date-text">
-                                        Til {"&"} Med: {element.endDate.replace("T", " kl ")}
+                                    <div id="exhibiton-image">
+                                        <img src={element.url} alt=""></img>
                                     </div>
-                                <div id="exhibition-end-date-line"></div>
+                                    <div className="exhibiton-flex-container">
+                                        <div id="exhibiton-description">
+                                            {element.description}
+                                        </div>
+                                        <div id="exhibition-line"></div>
+                                        <div id="exhibiton-adress">
+                                            {element.address}
+                                        </div>
+                                    </div>
+                                    <div id="exhibiton-date-container">
+                                            <div id="exhibiton-start-date-text">
+                                                Starter Den: {element.startDate.replace("T", " kl ")}
+                                            </div>
+                                        <div id="exhibition-start-date-line"></div>
+                                            <div id="exhibiton-end-date-text">
+                                                Til {"&"} Med: {element.endDate.replace("T", " kl ")}
+                                            </div>
+                                        <div id="exhibition-end-date-line"></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        )
+                    }
                 )
-            })
+            }
+        </div>
         )
     } else {
         return(
@@ -84,7 +97,7 @@ function ExhibitionTemplate() {
                 </div>
             </div>
         )
-    }
+    }  
 }
 
 export default ExhibitionTemplate

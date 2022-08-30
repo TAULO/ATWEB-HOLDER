@@ -47,8 +47,6 @@ function AddExhibtionsForm() {
                 mode:"cors",
                 method: "POST", 
                 headers: {'Content-Type': 'application/json'},
-                // headers: {"content-type":"application/x-www-form-urlencoded"},
-                // headers: {"content-type": "multipart/form-data"},
                 body: JSON.stringify(payload)
             })
             console.log(payload)
@@ -57,18 +55,22 @@ function AddExhibtionsForm() {
 
     const uploadExhibition = async (e) => {
         e.preventDefault()
-        // firebase.uploadFilesToStorage(file[0].name, file[0], file[0].type)
-        // .then(firebase.saveExhiptionToDB(title, description, address, startDate, endDate, await firebase.getFilesURLFromStorage(file[0].name)))
-        // setTimeout(() => window.location.reload(), 500);
+        firebase.uploadFilesToStorage(file[0].name, file[0], file[0].type)
+        .then(firebase.saveExhiptionToDB(title, description, address, startDate, endDate, await firebase.getFilesURLFromStorage(file[0].name)))
+        setTimeout(() => window.location.reload(), 500);
         sendNewExhibitionEmail()
     }
-
+    
     function deleteExhibition() {
-        const titleElement = document.getElementsByClassName("exhibition-delete-button")[0].nextElementSibling
-        firebase.deleteExhiptionFromDB(titleElement.innerText)
-        .then(setTimeout(() => {
-            document.location.reload()
-        }, 500))
+        const titleElementText = document.getElementsByClassName("exhibition-delete-button")[0].nextElementSibling.innerText
+        if(!window.confirm("Er du sikker på at du vil slette " + titleElementText)) {
+            return 
+        } else {
+            firebase.deleteExhiptionFromDB(titleElementText)
+            .then(setTimeout(() => {
+                document.location.reload()
+            }, 500))
+        }
     }
 
     function previewTitle(e) {
@@ -89,7 +91,6 @@ function AddExhibtionsForm() {
         document.getElementById("exhibiton-adress").innerHTML = e.target.value
     }
 
-    // DET ER MULIGT AT VÆLGE EN SLUTDATO FØR STARDATOEN
     function previewStartDate(e) {
         document.getElementById("exhibiton-start-date-text").innerHTML = e.target.value.replace("T", " kl ")
     }

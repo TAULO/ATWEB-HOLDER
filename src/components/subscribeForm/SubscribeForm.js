@@ -29,6 +29,8 @@ function SubscribeForm() {
                 <div id="subscribe-form-description">
                     <p style={{padding: "0px", margin:"0px"}}> 
                         Abooner til mit nyhedsbrev for at aldirg gå glip af mine kommende udstillinger
+                        <br></br>
+                        samt andre spændende nyheder
                     </p>
                 </div>
                 <div className="subscribe-form-input-container">

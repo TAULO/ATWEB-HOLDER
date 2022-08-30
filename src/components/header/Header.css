@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Kalam&family=Oleo+Script+Swash+Caps:wght@700&family=Pacifico&family=Satisfy&family=Ultra&family=Yeseva+One&display=swap');
 .header {
     padding: 30px;
     margin: 0px;
@@ -16,7 +17,8 @@
     font-family: "Savoye LET";
     font-size: 50px;
     justify-content: center;
-    width: 180px;
+    width: 300px;
+    font-family: 'Great Vibes', cursive;
 }
 
 @media only screen and (max-width: 400px) {

@@ -15,6 +15,9 @@ const firebaseConfig = {
 
 const images_path = "images/"
 
+const landingPagePath = "landingImages/"
+const exhibitionPagePath = "exhibitonImage/"
+
 const _collection = "images"
 const _collectionExhibition = "exhibitions"
 const _collectionEmailAdresses = "SubscribersEmail"

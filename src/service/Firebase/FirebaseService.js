@@ -29,7 +29,7 @@ const _collectionEmailAdresses = "SubscribersEmail"
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
-const dbRef = collection(db, _collection)
+const dbRefURL = collection(db, _collection)
 const dbRefExhibition = collection(db, _collectionExhibition)
 const dbRefEmail = collection(db, _collectionEmailAdresses)
 
@@ -67,7 +67,7 @@ class Firebase {
 
     async getAllFilesFromDB() {
         const data = []
-        const querySnapshot = await getDocs(dbRef)
+        const querySnapshot = await getDocs(dbRefURL)
         querySnapshot.forEach(doc => {
             data.push(doc.data())
         })

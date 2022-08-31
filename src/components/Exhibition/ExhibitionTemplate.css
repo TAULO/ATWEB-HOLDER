@@ -123,3 +123,14 @@
    padding-bottom: 4rem; */
    width: 100%;
 }
+
+.no-exhibiton-main-container {
+    display: flex;
+    justify-content: center;
+    background-color: var(--header-background-color);
+}
+
+#no-exhibiton-title {
+    color: var(--header-footer-text-color);
+    font-size: xx-large;
+}

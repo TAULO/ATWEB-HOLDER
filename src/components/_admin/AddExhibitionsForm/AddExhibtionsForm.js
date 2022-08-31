@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddExhibitionsForm.css"
-import { useState } from "react";
 import Firebase from "../../../service/Firebase/FirebaseService";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { async } from "@firebase/util";
+import { confirmPasswordReset } from "firebase/auth";
 
 
 
@@ -29,7 +30,6 @@ function AddExhibtionsForm() {
         fetchExhibitions()    
     }, [])
 
-    // implement checkbox so it is optimal to send mail
     const sendNewExhibitionEmail = async () => {
         const emailCheckbox = document.getElementById("admin-exhibition-email-checkbox")
         if (!emailCheckbox.checked) {
@@ -56,13 +56,14 @@ function AddExhibtionsForm() {
     const uploadExhibition = async (e) => {
         e.preventDefault()
         firebase.uploadFilesToStorage(file[0].name, file[0], file[0].type)
-        .then(firebase.saveExhiptionToDB(title, description, address, startDate, endDate, await firebase.getFilesURLFromStorage(file[0].name)))
+        .then(firebase.saveExhiptionToDB(title.trim(), description, address, startDate, endDate, await firebase.getFilesURLFromStorage(file[0].name)))
         setTimeout(() => window.location.reload(), 500);
         sendNewExhibitionEmail()
     }
     
-    function deleteExhibition() {
-        const titleElementText = document.getElementsByClassName("exhibition-delete-button")[0].nextElementSibling.innerText
+    function deleteExhibition(e) {
+        const titleElementText = e.target.parentNode.nextSibling.innerText
+
         if(!window.confirm("Er du sikker på at du vil slette " + titleElementText)) {
             return 
         } else {
@@ -74,21 +75,25 @@ function AddExhibtionsForm() {
     }
 
     function previewTitle(e) {
-        document.getElementById("exhibiton-title").childNodes[0].innerHTML = e.target.value
+        document.getElementById("exhibiton-title").childNodes[0].innerHTML = e.target.value.trim()
     }
 
     // image MUST currently already be saved in firebase storage
     async function previewImage(e) {
-        const currImageFile = e.target.files[0].name
-        document.getElementById("exhibiton-image").childNodes[0].src = await firebase.getFilesURLFromStorage(currImageFile)
+        const imageFile = e.target.files[0]
+        firebase.uploadFilesToStorage(imageFile.name, imageFile, imageFile.type).finally(async () => {
+            document.getElementById("exhibiton-image").childNodes[0].src = await firebase.getFilesURLFromStorage(imageFile.name)
+        }).then(async () =>{
+            firebase.saveFilesURLToDB(imageFile.name, imageFile.type, await firebase.getFilesURLFromStorage(imageFile.name))
+        })
     }
 
     function previewDescription(e) {
-        document.getElementById("exhibiton-description").innerHTML = e.target.value
+        document.getElementById("exhibiton-description").innerHTML = e.target.value.trim()
     }
 
     function previewAddress(e) {
-        document.getElementById("exhibiton-adress").innerHTML = e.target.value
+        document.getElementById("exhibiton-adress").innerHTML = e.target.value.trim()
     }
 
     function previewStartDate(e) {

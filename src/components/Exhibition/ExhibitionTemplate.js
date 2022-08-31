@@ -131,10 +131,9 @@ function ExhibitionTemplate() {
         )
     } else {
         return(
-            <div className="exhibiton-main-container">
-                <div className="exhibiton-container" style={{
-                    boxShadow: "none"}}>
-                    <div id="exhibiton-title">
+            <div className="no-exhibiton-main-container">
+                <div className="no-exhibiton-container">
+                    <div id="no-exhibiton-title">
                         <h1>Ingen udstillinger i den nærmeste fremtid</h1>
                     </div>
                     <div className="exhibiton-subscribe-form-container">

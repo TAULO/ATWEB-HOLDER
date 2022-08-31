@@ -11,8 +11,9 @@ function ExhibitionTemplate() {
     const [exhibition, setExhibition] = useState([])
     const [filterIsVisible, setFilterIsVisible] = useState(false)
 
+    const filterIconRef = useRef(null)
     const filterItemsRef = useRef(null)
-    const filterNewestItemRef = useRef(null)
+    const filterItemsContainer = useRef(null)
 
     // fetch exhibitions from firebase db
     useEffect(() => {
@@ -40,21 +41,35 @@ function ExhibitionTemplate() {
         deleteExpiredExhibitions()
     }, [exhibition])
 
+    useEffect(() => {
+        setTimeout(() => {
+            filterItemsContainer.current.addEventListener("mouseover", () => {
+                filterItemsRef.current.style.display = "block"
+            })
+            filterItemsContainer.current.addEventListener("mouseleave", () => {
+                filterItemsRef.current.style.display = "none"
+            })
+            
+        }, 2000)
+    }, [])
+
     function toggleFilterItems() {
         filterItemsRef.current.style.animation = "growDown 400ms ease-in-out forwards"
         setFilterIsVisible(!filterIsVisible)
+        console.log(filterIconRef.current)
     }     
 
     function filterNewestClick() {
         filter(firebase.filterExhibitionStartDateAsc())
+        
     }
 
     function filterOldestClick() {
-        filter()
+        filter(firebase.filterExhibitionEndDateAsc())
     }
 
     function filterNameClick() {
-        filter()
+        filter(firebase.filterExhibitionTitleAsc())
     }
 
     async function filter(fitlerMethod) {
@@ -67,9 +82,10 @@ function ExhibitionTemplate() {
         filterNewestClick,
         filterOldestClick,
         filterNameClick,
-        filterNewestItemRef,
         filterItemsRef,
         filterIsVisible,
+        filterIconRef,
+        filterItemsContainer
     }
    
     if (exhibition.length > 0) {

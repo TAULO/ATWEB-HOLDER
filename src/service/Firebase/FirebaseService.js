@@ -116,6 +116,27 @@ class Firebase {
         return filterArr
     }
 
+    async filterExhibitionEndDateAsc() {
+        const filterArr = []
+        const order = query(dbRefExhibition, orderBy("startDate", "desc"))
+        const docSnap = await getDocs(order)
+        docSnap.forEach(e => {
+            filterArr.push(e.data())
+        })
+        return filterArr
+    }
+
+    async filterExhibitionTitleAsc() {
+        const filterArr = []
+        const order = query(dbRefExhibition, orderBy("title".toLowerCase(), "asc"))
+        const docSnap = await getDocs(order)
+        docSnap.forEach(e => {
+            filterArr.push(e.data())
+        })
+        console.log(filterArr)
+        return filterArr
+    }
+
     // ------------------DATABASE (EMAIL ADRESSES)------------------
     async saveEmailAddressesToDB(email) {
         const docRef = doc(db, _collectionEmailAdresses, email)

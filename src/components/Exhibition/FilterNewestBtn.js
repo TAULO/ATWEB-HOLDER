@@ -5,9 +5,9 @@ import { faSort } from "@fortawesome/free-solid-svg-icons";
 
 export default function FilterNewestBtn(props) {
     return (
-        <div className="filter-neweste-btn-container">
-            <div id="filter-neweste-btn-card">
-                <FontAwesomeIcon icon={faSort} id="filter-newest-btn-icon" onClick={props.toggleFilterItems}></FontAwesomeIcon>
+        <div className="filter-neweste-btn-container" ref={props.filterItemsContainer}>
+            <div id="filter-neweste-btn-card" ref={props.filterIconRef}>
+                <FontAwesomeIcon icon={faSort} id="filter-newest-btn-icon"  onClick={props.toggleFilterItems}></FontAwesomeIcon>
             </div>
             <div className="filter-neweste-box-container" ref={props.filterItemsRef} style={{display: props.filterIsVisible ? "block" : "none"}}>
                 <div id="filter-neweste-box-items">

@@ -56,7 +56,6 @@ function ExhibitionTemplate() {
     function toggleFilterItems() {
         filterItemsRef.current.style.animation = "growDown 400ms ease-in-out forwards"
         setFilterIsVisible(!filterIsVisible)
-        console.log(filterIconRef.current)
     }     
 
     function filterNewestClick() {

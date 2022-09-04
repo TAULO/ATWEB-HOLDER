@@ -22,7 +22,7 @@ function AddImagesForm() {
     }
 
     async function fileAdded(e) {
-        async function test(i) {
+        async function saveURL(i) {
             firebase.saveFilesURLToDB(filesArr[i].name, filesArr[i].type, await firebase.getLandingImagesFromStorage(filesArr[i].name))
         }
         e.preventDefault()
@@ -31,7 +31,7 @@ function AddImagesForm() {
         for (let i = 0; i < filesArr.length; i++) {
             firebase.uploadImagesToLandingStorage(filesArr[i].name, filesArr[i], filesArr[i].type)
             .then(setTimeout(() => { 
-                test(i)
+                saveURL(i)
             }, 1000))
         }
         setTimeout(() => window.location.reload(), 2000)

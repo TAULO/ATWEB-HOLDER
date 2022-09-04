@@ -27,8 +27,6 @@ function MainImages() {
     useEffect(() => {
         async function getFilesURLFromStorage() {
             const firebase = new Firebase()
-            // maybe compare URL name with the name of images from storage
-            // to check after the corrects images are being added to main image
             setImageFileURL(await firebase.getAllFilesFromDB())
         }     
         getFilesURLFromStorage()

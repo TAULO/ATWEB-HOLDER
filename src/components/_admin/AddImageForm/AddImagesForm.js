@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import React, { useEffect, useState } from "react";
 import Firebase from "../../../service/Firebase/FirebaseService"
 import "./AddImagesForm.css"
@@ -21,13 +22,19 @@ function AddImagesForm() {
     }
 
     async function fileAdded(e) {
+        async function test(i) {
+            firebase.saveFilesURLToDB(filesArr[i].name, filesArr[i].type, await firebase.getLandingImagesFromStorage(filesArr[i].name))
+        }
         e.preventDefault()
         if (filesArr.length <= 0) return alert('Ingen filer valgt')
+       
         for (let i = 0; i < filesArr.length; i++) {
-            firebase.uploadFilesToStorage(filesArr[i].name, filesArr[i], filesArr[i].type)
-            .then(firebase.saveFilesURLToDB(filesArr[i].name, filesArr[i].type, await firebase.getFilesURLFromStorage(filesArr[i].name)))
+            firebase.uploadImagesToLandingStorage(filesArr[i].name, filesArr[i], filesArr[i].type)
+            .then(setTimeout(() => { 
+                test(i)
+            }, 1000))
         }
-        setTimeout(() => window.location.reload(), 500)
+        setTimeout(() => window.location.reload(), 2000)
     }
 
     function deleteImage(e) {

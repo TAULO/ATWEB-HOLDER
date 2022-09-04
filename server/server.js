@@ -4,15 +4,12 @@ import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, setDoc } fro
 import Nylas from "nylas"
 import bodyParser from "body-parser";
 import fetch from "node-fetch";
-import pug from "pug"
 
 const port = 510
 const app = express();
 
 app.use(express.static('views'));
 // app.set("view-engine", "html")
-app.set("view engine", "pug");
-
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -41,13 +38,6 @@ const _collectionEmailAdresses = "SubscribersEmail"
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp)
 const dbRef3 = collection(db, _collectionEmailAdresses)
-
-
-// middleware to handle CORS
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     next();
-//   });
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -80,7 +70,6 @@ app.get("/", (req, res) => {
 })
 
 function htmlBody(title, startDate, endDate) {
-    const hey = ``
     return `<div style={{"color:red"}}>
         <div>Ny udstilling Præsenteres: ${title}</div>
         <br></br>

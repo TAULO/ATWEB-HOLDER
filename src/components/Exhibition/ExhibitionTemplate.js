@@ -93,7 +93,7 @@ function ExhibitionTemplate() {
                 <FilterNewestBtn {...childProps}></FilterNewestBtn>
                     {exhibition.map(element => {
                         return( 
-                            <div className="exhibiton-main-container">
+                            <div className="exhibiton-main-container" key={element.title}>
                                 <div className="exhibiton-container">
                                     <div id="exhibiton-title">
                                         <h1>{element.title}</h1>

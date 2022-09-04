@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import "./index.css"
 import LandingPage from './components/LandingPage/LandingPage';
-import InstagramImages from './components/instagramImages/InstagramImages';
+import InstagramImages from './components/InstagramImages/InstagramImages';
 import ExhibitionTemplate from './components/Exhibition/ExhibitionTemplate';
 import Header from "./components/header/Header"
 import Footer from './components/footer/footer';

@@ -55,8 +55,8 @@ function AddExhibtionsForm() {
 
     const uploadExhibition = async (e) => {
         e.preventDefault()
-        firebase.uploadFilesToStorage(file[0].name, file[0], file[0].type)
-        .then(firebase.saveExhiptionToDB(title.trim(), description, address, startDate, endDate, await firebase.getFilesURLFromStorage(file[0].name)))
+        firebase.uploadImagesToExhibitonStorage(file[0].name, file[0], file[0].type)
+        .then(firebase.saveExhiptionToDB(title.trim(), description, address, startDate, endDate, await firebase.getExhibitonImagesFromStorage(file[0].name)))
         setTimeout(() => window.location.reload(), 500);
         sendNewExhibitionEmail()
     }
@@ -81,10 +81,10 @@ function AddExhibtionsForm() {
     // image MUST currently already be saved in firebase storage
     async function previewImage(e) {
         const imageFile = e.target.files[0]
-        firebase.uploadFilesToStorage(imageFile.name, imageFile, imageFile.type).finally(async () => {
-            document.getElementById("exhibiton-image").childNodes[0].src = await firebase.getFilesURLFromStorage(imageFile.name)
+        firebase.uploadImagesToExhibitonStorage(imageFile.name, imageFile, imageFile.type).finally(async () => {
+            document.getElementById("exhibiton-image").childNodes[0].src = await firebase.getExhibitonImagesFromStorage(imageFile.name)
         }).then(async () =>{
-            firebase.saveFilesURLToDB(imageFile.name, imageFile.type, await firebase.getFilesURLFromStorage(imageFile.name))
+            firebase.saveFilesURLToDB(imageFile.name, imageFile.type, await firebase.getExhibitonImagesFromStorage(imageFile.name))
         })
     }
 
@@ -168,7 +168,7 @@ function AddExhibtionsForm() {
                 <div className="admin-exhibition-from-db">
                     {exhibition.map(element => {
                         return (
-                            <div className="exhibiton-main-container">
+                            <div className="exhibiton-main-container" key={element.title}>
                                 <div className="exhibiton-container">
                                     <FontAwesomeIcon className="exhibition-delete-button" icon={faTrashAlt} onClick={deleteExhibition}></FontAwesomeIcon>
                                     <div id="exhibiton-title">

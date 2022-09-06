@@ -19,6 +19,7 @@
     margin-left: 50px;
     word-spacing: 3px;
     font-family: 'Kalam', cursive;
+    font-size: 20px;
 }
 
 #mail-container {
@@ -27,6 +28,7 @@
     padding: 5px;
     margin-left: 50px;
     font-family: 'Kalam', cursive;
+    font-size: 20px;
 }
 
 #instagram-icon-container {

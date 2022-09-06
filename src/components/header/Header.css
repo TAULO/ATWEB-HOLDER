@@ -34,7 +34,7 @@
     padding-right: 25px;
     font-size: larger;
     text-decoration: underline;
-    text-underline-offset: 5px;
+    text-underline-offset: 7px;
 }
 
 @media only screen and (max-width: 400px) {
@@ -58,5 +58,6 @@
     right: 60px;
     font-family: 'Kalam', cursive;
     font-weight: 700;
+    font-size: 20px;
 }
 

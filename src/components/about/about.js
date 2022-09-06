@@ -6,7 +6,7 @@ function About() {
         <div className="main-container">
             <div className="about-container">
                 <div id="about-title">
-                    <h1>Min Passion</h1>    
+                    Min Passion    
                 </div>
                 <div id="about-text">
                 Mit navn er Anette Taulo jeg bor i Skjern. 

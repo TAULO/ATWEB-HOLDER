@@ -96,7 +96,7 @@ function ExhibitionTemplate() {
                             <div className="exhibiton-main-container" key={element.title}>
                                 <div className="exhibiton-container">
                                     <div id="exhibiton-title">
-                                        <h1>{element.title}</h1>
+                                        {element.title}
                                     </div>
                                     <div id="exhibiton-image">
                                         <img src={element.url} alt=""></img>

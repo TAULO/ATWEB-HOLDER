@@ -57,12 +57,12 @@ function AddExhibtionsForm() {
         e.preventDefault()
         firebase.uploadImagesToExhibitonStorage(file[0].name, file[0], file[0].type)
         .then(firebase.saveExhiptionToDB(title.trim(), description, address, startDate, endDate, await firebase.getExhibitonImagesFromStorage(file[0].name)))
-        setTimeout(() => window.location.reload(), 500);
+        setTimeout(() => window.location.reload(), 1000);
         sendNewExhibitionEmail()
     }
     
     function deleteExhibition(e) {
-        const titleElementText = e.target.parentNode.nextSibling.innerText
+        const titleElementText = document.querySelector(".exhibition-delete-button").nextSibling.innerHTML
 
         if(!window.confirm("Er du sikker på at du vil slette " + titleElementText)) {
             return 
@@ -75,7 +75,7 @@ function AddExhibtionsForm() {
     }
 
     function previewTitle(e) {
-        document.getElementById("exhibiton-title").childNodes[0].innerHTML = e.target.value.trim()
+        document.querySelector("#exhibiton-title").innerHTML = e.target.value.trim()
     }
 
     // image MUST currently already be saved in firebase storage
@@ -138,7 +138,7 @@ function AddExhibtionsForm() {
                 <div className="exhibiton-main-container">
                         <div className="exhibiton-container">
                             <div id="exhibiton-title">
-                                <h1>Titel</h1>
+                                Titel
                             </div>
                             <div id="exhibiton-image">
                                 <img src="test" alt=""></img>
@@ -172,7 +172,7 @@ function AddExhibtionsForm() {
                                 <div className="exhibiton-container">
                                     <FontAwesomeIcon className="exhibition-delete-button" icon={faTrashAlt} onClick={deleteExhibition}></FontAwesomeIcon>
                                     <div id="exhibiton-title">
-                                        <h1>{element.title}</h1>
+                                        {element.title}
                                     </div>
                                     <div id="exhibiton-image">
                                         <img src={element.url} alt=""></img>

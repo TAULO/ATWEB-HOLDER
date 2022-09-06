@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Kalam&family=Oleo+Script+Swash+Caps:wght@700&family=Pacifico&family=Satisfy&family=Ultra&family=Yeseva+One&display=swap');
 .header {
     padding: 30px;
     margin: 0px;
@@ -14,7 +13,6 @@
     left: 50px;
     display: block;
     margin: 0px;
-    font-family: "Savoye LET";
     font-size: 50px;
     justify-content: center;
     width: 300px;
@@ -36,7 +34,7 @@
     padding-right: 25px;
     font-size: larger;
     text-decoration: underline;
-    text-underline-offset: 5px;   
+    text-underline-offset: 5px;
 }
 
 @media only screen and (max-width: 400px) {
@@ -58,5 +56,7 @@
     display: inline-flex;
     top: 50px;
     right: 60px;
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
 }
 

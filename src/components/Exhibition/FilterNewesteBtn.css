@@ -9,8 +9,6 @@
 #filter-neweste-btn-card {
     display: flex;
     border-radius: 10px;
-    /* width: 100px;
-    height: 50px; */
     justify-content: center;
 }
 
@@ -27,7 +25,7 @@
 
 #filter-neweste-btn-text {
     text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Yeseva One';
 }
 
 .filter-neweste-box-container {
@@ -43,7 +41,8 @@
     display: block;
     padding: 15px;
     border-bottom: 3px solid var(--header-background-color);
-    /* padding-bottom: 20px; */
+    font-family: 'Kalam', cursive;
+    color: var(--element-text-color);
 }
 
 #filter-neweste-box-items :last-child {
@@ -51,7 +50,7 @@
 }
 
 #filter-neweste-box-items > *:hover {
-    opacity: 0.5;
+    color: var(--footer-background-color);
     cursor: pointer;
 }
 

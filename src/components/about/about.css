@@ -2,12 +2,7 @@
     display: flex;
     justify-content: center;
     padding: 50px;
-    /* margin: 30px; */
-
     box-shadow: inset 2px 5px 20px #555;
-
-
-    /* border-radius: 5px; */
 }
 
 .about-container {  
@@ -21,17 +16,21 @@
 
 #about-title {
     color: var(--header-background-color);
-    font-size: large;
+    font-size: 100px;
     align-self: center;
+    font-weight: 900;
+    margin-bottom: 30px;
+    font-family: 'Qwitcher Grypen', cursive;
+    font-weight: 700;
 }
 
 #about-text {
     color: var(--element-text-color);
     font-size: 25px;
-    /* text-align: center; */
+    font-family: 'Kalam', cursive;
+    font-weight: 400;
 }
 
 #about-text-spacing {
     height: 20px;
-    /* background-color: var(--header-background-color); */
 }

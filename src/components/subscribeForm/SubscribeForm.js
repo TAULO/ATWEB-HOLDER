@@ -24,7 +24,7 @@ function SubscribeForm() {
         <div className="subscribe-form-container">
             <div className="subscribe-form">
                 <div id="subscribe-form-title">
-                    <h1 style={{padding: "0px", margin:"0px"}}>Følg med på mine kommende udstillinger</h1>
+                    Følg Med På Mine Kommende Udstillinger
                 </div>
                 <div id="subscribe-form-description">
                     <p style={{padding: "0px", margin:"0px"}}> 

@@ -37,7 +37,7 @@ function SubscribeForm() {
                     <form onSubmit={sendWelcomeEmail} id="contact-form">
                         <input type="hidden" id="message" name="message" value="hello from:D"></input>
                         <input type="hidden" id="reply_to" name="reply_to"></input>
-                        <input type="email" id="subscribe-form-input" placeholder="Email Adresse" required></input>
+                        <input type="email" placeholder="Email Adresse" id="subscribe-form-input"></input>
                         <input type="submit" id="subscribe-form-button" value="Abonner"></input>
                     </form>
                 </div>

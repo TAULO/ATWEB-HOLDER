@@ -19,9 +19,8 @@ function About() {
                 <div id="about-text-spacing"></div>
                 Fra begyndelsen af min maler/kunst-rejse har jeg udstillet mine malerier forskellige steder i Vestjylland, hvor jeg har fået meget positiv omtale og anerkendelse for mine malerier.
                 </div>
-         </div>
+             </div>
         </div>
-        
     );
 }
 

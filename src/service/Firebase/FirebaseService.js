@@ -173,5 +173,4 @@ class Firebase {
         return data;
     }
 }
-
 export default Firebase

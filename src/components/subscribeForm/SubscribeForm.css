@@ -14,7 +14,7 @@
 .subscribe-form {
     display: grid;
     background-color: var(--element-background-color);
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     width: 50rem;
     height: 10rem;
     justify-content: space-evenly;
@@ -22,26 +22,30 @@
     margin: 2rem;
     margin-top: 6rem;
     height: 350px;
-    width:45%;
+    width:50%;
     color: var(--element-text-color);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 #subscribe-form-title {
     grid-row: 1;
+    grid-column: 1/4;
     place-self: center;
     margin-top: 20px;
     padding-top: 0px;
     padding-bottom: 0px;
     color: #E85A4F;
     font-family: 'Qwitcher Grypen', cursive;
-    font-size: 55px; 
+    font-size: 60px; 
     font-weight: 700;
-
+    text-decoration: underline;
+    text-underline-offset: 26px;
+    text-decoration-thickness: 5px;
 }
 
 #subscribe-form-description {
     grid-row: 2;
+    grid-column: 1/4;
     place-self: center;
     padding: 1rem;
     padding-top: 10px;
@@ -52,14 +56,13 @@
 }
 
 .subscribe-form-input-container {
-    grid-row: 3/5;
-    grid-column: 1/2;
-    justify-self: center;
-    width: 80%;
+    grid-column: 1/4;
+    margin-left: 60px;
+    margin-bottom: 5px;
 }
 
 #subscribe-form-input {
-    width: 100%;
+    width: 90%;
     font-size: 20px;
     border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 5rem;
@@ -68,6 +71,7 @@
     padding: 10px;
     font-family: 'Kalam', cursive;
     font-size: 20px;
+    margin: 0px;
 }
 
 #subscribe-form-input:valid {
@@ -80,15 +84,13 @@
 }
 
 #subscribe-form-button{
-    display: flex;
     grid-row: 5;
     grid-column: 1;
+    grid-column: 1/4;
     border: none;
     border-radius: 5rem;
     background-color: var(--element-text-color);
     background-color: var(--exhibition-lines-color);
-    align-items: center;
-    justify-content: center;
     width: 20%;
     height: 40px;
     font-weight: 900;

@@ -16,6 +16,7 @@ const landingPagePath = "landingImages/"
 const exhibitionPagePath = "exhibitonImage/"
 
 const _collectionImagesURL = "images"
+const _collectionExhibitionImages = "ExhibitionImages"
 const _collectionExhibition = "exhibitions"
 const _collectionEmailAdresses = "SubscribersEmail"
 
@@ -27,6 +28,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 const dbRefURL = collection(db, _collectionImagesURL)
+const dbRefExhibitionImages = collection(db, _collectionExhibitionImages) 
 const dbRefExhibition = collection(db, _collectionExhibition)
 const dbRefEmail = collection(db, _collectionEmailAdresses)
 

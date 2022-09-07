@@ -27,7 +27,7 @@ function MainImages() {
     useEffect(() => {
         async function getFilesURLFromStorage() {
             const firebase = new Firebase()
-            setImageFileURL(await firebase.getAllFilesFromDB())
+            setImageFileURL(await firebase.getAllLandingFilesFromDB())
         }     
         getFilesURLFromStorage()
     }, [])

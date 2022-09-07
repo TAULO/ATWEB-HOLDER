@@ -75,7 +75,7 @@
 }
 
 #subscribe-form-input:valid {
-    border: 2px solid green;
+    /* border: 2px solid green; */
 }
 
 #subscribe-form-input:focus {

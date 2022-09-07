@@ -17,7 +17,7 @@ const exhibitionPagePath = "exhibitonImage/"
 
 const _collectionLandingImages = "LandingImages"
 const _collectionExhibitionImages = "ExhibitionImages"
-const _collectionExhibition = "exhibitions"
+const _collectionExhibition = "Exhibitions"
 const _collectionEmailAdresses = "SubscribersEmail"
 
 // Initialize Firebase auth 
@@ -37,6 +37,7 @@ const storage = getStorage()
 
 class Firebase {
     // ------------------STORAGE------------------
+    
     // upload images
     async #uploadImages(name, file, type, imagePath) {
         const metadata = {
@@ -97,7 +98,7 @@ class Firebase {
         .catch(e => console.log("[DATABASE]", "Error when trying to delete:", name, e))
     }
 
-    // storage
+    // landing
     async saveLandingFileToDB(name, type, url) {
         return await this.#saveFilesURLToDB(name, type, url, _collectionLandingImages)
     }
@@ -135,6 +136,7 @@ class Firebase {
             url: url
         })
         .then(console.log("[DATABASE]","Added:", title, " to exhibitions"))
+        .catch(e => console.log("[DATABASE]", "Error when trying to add:", title, e))
     }
 
     async getExhibitonFromDB() {

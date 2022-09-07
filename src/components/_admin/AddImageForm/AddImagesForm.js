@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import React, { useEffect, useState } from "react";
 import Firebase from "../../../service/Firebase/FirebaseService"
 import "./AddImagesForm.css"
@@ -44,16 +43,6 @@ function AddImagesForm() {
                 window.location.reload()
             }, 500)
         )        
-    }
-
-    function selectItem(e) {
-        if (isSelected) {
-            return e.target.style.opacity = "0.7"
-        } else {
-            return e.target.style.opacity = "1"
-        }
-        // isSelected ? e.target.style.opacity = "0.7" : e.target.style.opacity = "1"
-    //  style={isSelected ? {opacity:"0.7"} : {opacity:"1"}}
     }
 
     function displayImages() {

@@ -67,11 +67,9 @@ function AddExhibtionsForm() {
         if(!window.confirm("Er du sikker på at du vil slette " + titleElementText)) {
             return 
         } else {
-            firebase.deleteExhiptionFromDB(titleElementText)
-            .then(setTimeout(() => {
-                firebase.deleteExhibitionFileFromDB(titleElementText)
-                // document.location.reload()
-            }, 500))
+            firebase.deleteExhiptionFromDB(titleElementText).then(setTimeout(() => {document.location.reload()}, 500))
+            firebase.deleteExhibitionFileFromDB(titleElementText)
+            
         }
     }
 
@@ -198,8 +196,7 @@ function AddExhibtionsForm() {
                                     </div>
                                 </div>
                             </div>
-                        )
-                    })}
+                        )})}
                 </div>
         </div>
     )

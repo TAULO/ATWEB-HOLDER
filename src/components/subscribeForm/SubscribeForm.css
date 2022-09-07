@@ -18,16 +18,11 @@
     width: 50rem;
     height: 10rem;
     justify-content: space-evenly;
-    border-radius: 15px;
-    /* padding: 3rem; */
-    /* padding-top: 1.5rem;
-    padding-bottom: 7rem;
-    padding-left: 4rem;
-    padding-right: 4rem; */
+    border-radius: 3rem;
     margin: 2rem;
     margin-top: 6rem;
-    height: 325px;
-    width: 50%;
+    height: 350px;
+    width:45%;
     color: var(--element-text-color);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
@@ -67,7 +62,7 @@
     width: 100%;
     font-size: 20px;
     border: 2px solid rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
+    border-radius: 5rem;
     background-color: var(--body-background-color);
     text-align: center;
     padding: 10px;
@@ -89,17 +84,20 @@
     grid-row: 5;
     grid-column: 1;
     border: none;
-    border-radius: 4px;
+    border-radius: 5rem;
     background-color: var(--element-text-color);
     background-color: var(--exhibition-lines-color);
     align-items: center;
     justify-content: center;
-    width: 15%;
+    width: 20%;
     height: 40px;
     font-weight: 900;
     font-size: larger;
     margin-top: 1rem;
     color: var(--header-footer-text-color);
+    font-family: 'Kalam', cursive;
+    font-size: 20px;
+    text-align: center;
 }
 
 #subscribe-form-button:hover {

@@ -76,9 +76,9 @@ function MainImages() {
         <div className="main-list-container">
             <div className="main-text-container">
                 <h1 id="main-text-title">
-                    Kom på Besøg
+                    Velkommen Til
                 <br></br> 
-                    og se mine Kunstværker
+                    Galleri Taulo
                 </h1>
                 <p id="main-text-paragraph">
                     Se <u>udstillinger</u> eller kontakt <u>a-nett@hotmail.com</u> 

@@ -9,7 +9,7 @@ function About() {
                     Min Passion    
                 </div>
                 <div id="about-text">
-                Mit navn er Anette Taulo jeg bor i Skjern. 
+                Mit navn er <div style={{"color":"#E85A4F", "display":"inline"}}>Anette Taulo</div> jeg bor i Skjern. 
                 Min store passion og interesse er at bruge timevis på at male og fordybe mig i kunstens univers. 
                 <div id="about-text-spacing"></div>
                 Interesse for kunst/maleri startede tilbage i 2005.

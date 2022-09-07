@@ -58,6 +58,7 @@ function AddImagesForm() {
 
     function displayImages() {
         return imageFileURL.map((element, index) => {
+            console.log(element)
             return (
                 <div key={index} className="admin-image-container">
                     <li id="admin-image-list">

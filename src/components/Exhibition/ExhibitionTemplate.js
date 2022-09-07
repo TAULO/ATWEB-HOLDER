@@ -76,7 +76,7 @@ function ExhibitionTemplate() {
         setFilterIsVisible(false)
     }
 
-    const childProps = {
+    const filterNewestBtnProps = {
         toggleFilterItems,
         filterNewestClick,
         filterOldestClick,
@@ -90,7 +90,7 @@ function ExhibitionTemplate() {
     if (exhibition.length > 0) {
         return (
             <div className="exhibiton-landing-container">
-                <FilterNewestBtn {...childProps}></FilterNewestBtn>
+                <FilterNewestBtn {...filterNewestBtnProps}></FilterNewestBtn>
                     {exhibition.map(element => {
                         return( 
                             <div className="exhibiton-main-container" key={element.title}>
@@ -133,11 +133,9 @@ function ExhibitionTemplate() {
             <div className="no-exhibiton-main-container">
                 <div className="no-exhibiton-container">
                     <div id="no-exhibiton-title">
-                        <h1>Ingen udstillinger i den nærmeste fremtid</h1>
+                        <h1>Ingen Udstillinger I Den Nærmeste Fremtid</h1>
                     </div>
-                    <div className="exhibiton-subscribe-form-container">
-                        <SubscribeForm></SubscribeForm>
-                    </div>
+                    <SubscribeForm></SubscribeForm>
                 </div>
             </div>
         )

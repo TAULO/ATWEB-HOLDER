@@ -69,7 +69,8 @@ function AddExhibtionsForm() {
         } else {
             firebase.deleteExhiptionFromDB(titleElementText)
             .then(setTimeout(() => {
-                document.location.reload()
+                firebase.deleteExhibitionFileFromDB(titleElementText)
+                // document.location.reload()
             }, 500))
         }
     }
@@ -78,13 +79,12 @@ function AddExhibtionsForm() {
         document.querySelector("#exhibiton-title").innerHTML = e.target.value.trim()
     }
 
-    // image MUST currently already be saved in firebase storage
     async function previewImage(e) {
         const imageFile = e.target.files[0]
         firebase.uploadImagesToExhibitonStorage(imageFile.name, imageFile, imageFile.type).finally(async () => {
             document.getElementById("exhibiton-image").childNodes[0].src = await firebase.getExhibitonImagesFromStorage(imageFile.name)
         }).then(async () =>{
-            firebase.saveFilesURLToDB(imageFile.name, imageFile.type, await firebase.getExhibitonImagesFromStorage(imageFile.name))
+            firebase.saveExhibitionFileToDB(imageFile.name, imageFile.type, await firebase.getExhibitonImagesFromStorage(imageFile.name))
         })
     }
 

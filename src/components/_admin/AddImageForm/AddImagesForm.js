@@ -11,7 +11,7 @@ function AddImagesForm() {
 
     useEffect(() => {
         async function getFilesURLFromStorage() {
-            setImageFileURL(await firebase.getAllFilesFromDB())
+            setImageFileURL(await firebase.getAllLandingFilesFromDB())
         }       
         getFilesURLFromStorage()
     }, [])
@@ -23,11 +23,11 @@ function AddImagesForm() {
 
     async function fileAdded(e) {
         async function saveURL(i) {
-            firebase.saveFilesURLToDB(filesArr[i].name, filesArr[i].type, await firebase.getLandingImagesFromStorage(filesArr[i].name))
+            console.log(filesArr[i].name, filesArr[i].type, await firebase.getLandingImagesFromStorage(filesArr[i].name))
+            firebase.saveLandingFileToDB(filesArr[i].name, filesArr[i].type, await firebase.getLandingImagesFromStorage(filesArr[i].name))
         }
         e.preventDefault()
         if (filesArr.length <= 0) return alert('Ingen filer valgt')
-       
         for (let i = 0; i < filesArr.length; i++) {
             firebase.uploadImagesToLandingStorage(filesArr[i].name, filesArr[i], filesArr[i].type)
             .then(setTimeout(() => { 
@@ -38,7 +38,7 @@ function AddImagesForm() {
     }
 
     function deleteImage(e) {
-        firebase.deleteFileFromDB(e.target.value)
+        firebase.deleteLandingFileFromDB(e.target.value)
         .then(
             setTimeout(() => {
                 window.location.reload()

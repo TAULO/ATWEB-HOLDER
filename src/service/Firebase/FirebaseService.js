@@ -15,7 +15,7 @@ const firebaseConfig = {
 const landingPagePath = "landingImages/"
 const exhibitionPagePath = "exhibitonImage/"
 
-const _collectionImagesURL = "images"
+const _collectionLandingImages = "LandingImages"
 const _collectionExhibitionImages = "ExhibitionImages"
 const _collectionExhibition = "exhibitions"
 const _collectionEmailAdresses = "SubscribersEmail"
@@ -27,7 +27,7 @@ const _collectionEmailAdresses = "SubscribersEmail"
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
-const dbRefURL = collection(db, _collectionImagesURL)
+const dbRefLandingImages = collection(db, _collectionLandingImages)
 const dbRefExhibitionImages = collection(db, _collectionExhibitionImages) 
 const dbRefExhibition = collection(db, _collectionExhibition)
 const dbRefEmail = collection(db, _collectionEmailAdresses)
@@ -71,30 +71,56 @@ class Firebase {
     }
     
     // ------------------DATEBASE (URL)------------------
-    async saveFilesURLToDB(name, type, url) {
-        const docRef = doc(db, _collectionImagesURL, name)
+    async #saveFilesURLToDB(name, type, url, ref) {
+        const docRef = doc(db, ref, name)
         return await setDoc(docRef, {
             name: name,
             type: type,
             url: url
         })
-        .then(console.log("[DATABASE]","Added:", name))
+        .then(console.log("[DATABASE]","Added:", name, "to", ref))
         .catch(e => console.log("[DATABASE]","Error when trying to add:", name, e))
     }
 
-    async getAllFilesFromDB() {
+    async #getAllFilesFromDB(collection) {
         const data = []
-        const querySnapshot = await getDocs(dbRefURL)
+        const querySnapshot = await getDocs(collection)
         querySnapshot.forEach(doc => {
             data.push(doc.data())
         })
         return data;
     }
 
-    async deleteFileFromDB(name) {
-        return await deleteDoc(doc(db, _collectionImagesURL, name))
-        .then(console.log("[DATABASE]", "Deleted:", name))
+    async #deleteFileFromDB(name, ref) {
+        return await deleteDoc(doc(db, ref, name))
+        .then(console.log("[DATABASE]", "Deleted:", name, "from", ref))
         .catch(e => console.log("[DATABASE]", "Error when trying to delete:", name, e))
+    }
+
+    // storage
+    async saveLandingFileToDB(name, type, url) {
+        return await this.#saveFilesURLToDB(name, type, url, _collectionLandingImages)
+    }
+
+    async getAllLandingFilesFromDB() {
+        return await this.#getAllFilesFromDB(dbRefLandingImages)
+    }
+
+    async deleteLandingFileFromDB(name) {
+        return await this.#deleteFileFromDB(name, _collectionLandingImages)
+    }
+
+    // exhibition
+    async saveExhibitionFileToDB(name, type, url) {
+        return await this.#saveFilesURLToDB(name, type, url, _collectionExhibitionImages)
+    }
+
+    async getAllExhibitionFilesFromDB() {
+        return await this.#getAllFilesFromDB(dbRefExhibitionImages)
+    }
+
+    async deleteExhibitionFileFromDB(name) {
+        return await this.#deleteFileFromDB(name, _collectionExhibitionImages)
     }
 
     // ------------------DATABASE (EXHIBITION)------------------

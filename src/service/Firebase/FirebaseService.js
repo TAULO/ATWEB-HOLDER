@@ -1,7 +1,7 @@
-import { initializeApp } from "firebase/app";
+import { FirebaseError, initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, deleteDoc, doc, setDoc, orderBy, query } from 'firebase/firestore/lite';
 import { uploadBytes, getStorage, ref, getDownloadURL } from "firebase/storage"
-import { getAuth } from "firebase/auth"
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAtVqPYeAhzVA43mig1fg44Ylg8VblWRNo",
@@ -20,12 +20,13 @@ const _collectionExhibitionImages = "ExhibitionImages"
 const _collectionExhibition = "Exhibitions"
 const _collectionEmailAdresses = "SubscribersEmail"
 
-// Initialize Firebase auth 
-// const auth = getAuth(firebaseConfig)
+const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase database
-const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
+
+// Initialize Firebase auth 
+const auth = getAuth(app)
 
 const dbRefLandingImages = collection(db, _collectionLandingImages)
 const dbRefExhibitionImages = collection(db, _collectionExhibitionImages) 
@@ -201,6 +202,26 @@ class Firebase {
             data.push(doc.data())
         })
         return data;
+    }
+
+    // ------------------AUTH------------------
+    async loginWithEmail(email, password) {
+        return signInWithEmailAndPassword(auth, email, password)
+        .then(data => console.log("Email succeded with", email, data))
+        .catch(e => {
+            console.log("Something when wrong at sign in", e)
+            throw e.code === "auth/invalid-email" ? Error("Forkert email") : Error("Forkert kodeord")
+        })
+    } 
+
+    async logoutOfEmail() {
+        return signOut(auth)
+        .then(d => console.log("Succesfully logged out"))
+        .catch(e => console.log("Something when wrong at logout", e))
+    }
+
+    async getUser() {
+        return auth.currentUser
     }
 }
 export default Firebase

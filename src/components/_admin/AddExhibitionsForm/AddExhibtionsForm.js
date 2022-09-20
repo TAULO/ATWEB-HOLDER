@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./AddExhibitionsForm.css"
 import Firebase from "../../../service/Firebase/FirebaseService";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { async } from "@firebase/util";
-import { confirmPasswordReset } from "firebase/auth";
-
-
 
 function AddExhibtionsForm() {
     const PORT = 510
 
     const firebase = new Firebase()
+    const navigate = useNavigate()
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -22,12 +21,28 @@ function AddExhibtionsForm() {
 
     const [exhibition, setExhibition] = useState([])
 
+    const [user, setUser] = useState()
+
     useEffect(() => {
         async function fetchExhibitions() {
             const firebase = new Firebase()
             setExhibition(await firebase.getExhibitonFromDB())
         }    
         fetchExhibitions()    
+    }, [])
+
+    useEffect(() => {
+        async function fetchUser() {
+            const firebase = new Firebase()
+            setUser(await firebase.getUser())
+            console.log("User: " + user);
+        }    
+        fetchUser()  
+        setTimeout(() => {
+            if (user === undefined) {
+                navigate("/admin")
+            }  
+        }, 3000);
     }, [])
 
     const sendNewExhibitionEmail = async () => {
@@ -101,7 +116,6 @@ function AddExhibtionsForm() {
     function previewEndDate(e) {
        document.getElementById("exhibiton-end-date-text").innerHTML = e.target.value.replace("T", " kl ")
     }
-
     return (
         <div className="admin-exhibition-form-container">
             <form action={`http://localhost:${PORT}/new-exhibition`} method="POST">

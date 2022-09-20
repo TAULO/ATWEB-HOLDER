@@ -28,8 +28,13 @@ function Header({ history }) {
     // remove underline when at the current route
     function removeUnderline(e) {
         // const elementClassName = e.target.className
-        // currentElement = document.querySelector(`.${elementClassName}`)
+        currentElement = document.querySelector(`.${e.target.className}`)
         // currentElement.style.textDecoration = "none"
+
+        const pathName = location.pathname.replace("/", "")
+
+      
+        
     }
 
     return ( 

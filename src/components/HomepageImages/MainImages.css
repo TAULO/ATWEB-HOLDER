@@ -1,47 +1,66 @@
 :root {
-    --main-img-width: 800px;
-    --main-img-height: 800px;
+    --main-img-width: 100%;
+    --main-img-height: 50%;
 }
 
 .main-list-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     background-color: var(--header-background-color);
-    padding-top: 30px;
-    padding-bottom: 100px;
+    padding-top: 100px;
+    padding-bottom: 200px;
     height: var(--main-img-height);
     align-content: space-between;
     width: 100%;
     font-family: 'Kalam', cursive;
+    justify-content: center;
+    height: 50%;
 }
 
 .main-text-container {
     margin-right: 130px;
-    color: var(--header-footer-text-color);
 }
 
 #main-text-title {
     font-size: 55px;
-    text-align: center;
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
     font-weight: 900;
-}
-
-#main-text-paragraph {
-    font-size: 25px;
-    text-underline-offset: 6px;
-    line-height: 40px;
-    font-weight: 400;
+    color: var(--header-footer-text-color);
     text-align: center;
 }
 
 .main-list {
     display: flex;
-    /* outline: 15px solid var(--header-footer-text-color); */
+    justify-content: center;
     border-radius: 1px;
     outline-offset: 15px;
     margin: 0px;
     padding: 0px;
+}
+
+
+.main-img-items {
+    opacity: 1;
+    height: var(--main-img-height);
+    width: var(--main-img-width);
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 70px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+@media only screen and (max-width: 400px) {
+    .main-img-items {
+        height: calc(var(--main-img-height) - 500px);
+        width: calc(var(--main-img-width) - 500px);
+    }
+}
+
+.main-img-items:hover {
+    padding: 0px;
+    /* opacity: 0.7; */
+    cursor: pointer;
 }
 
 @keyframes fading-animation {
@@ -61,32 +80,5 @@
         opacity: 0;
     }
 }
-
-.main-img-items {
-    left: 0;
-    opacity: 1;
-    height: var(--main-img-height);
-    width: var(--main-img-width);
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 70px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-    
-
-@media only screen and (max-width: 400px) {
-    .main-img-items {
-        height: calc(var(--main-img-height) - 500px);
-        width: calc(var(--main-img-width) - 500px);
-    }
-}
-
-.main-img-items:hover {
-    padding: 0px;
-    opacity: 0.7;
-    cursor: pointer;
-}
- 
-
 
 

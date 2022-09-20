@@ -76,21 +76,16 @@ function MainImages() {
         <div className="main-list-container">
             <div className="main-text-container">
                 <h1 id="main-text-title">
-                    Velkommen Til
-                <br></br> 
-                    Galleri Taulo
+                    Velkommen Til Galleri Taulo
                 </h1>
-                <p id="main-text-paragraph">
-                    Se <u>udstillinger</u> eller kontakt <u>a-nett@hotmail.com</u> 
-                    <br></br>
-                    for en privat udstilling hos mig.
-                </p>
             </div>
-            <ul ref={currentImageRef}  className="main-list">
-                {
-                    presentation()
-                }
-            </ul>
+            <div>
+                <ul ref={currentImageRef}  className="main-list">
+                    {
+                        presentation()
+                    }
+                </ul>
+            </div>
         </div>
     );
 }

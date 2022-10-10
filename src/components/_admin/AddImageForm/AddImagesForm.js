@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Firebase from "../../../service/Firebase/FirebaseService"
+import Loader from "../../SpinningLoader/SpinningLoader"
 import "./AddImagesForm.css"
 
 function AddImagesForm() {
@@ -8,11 +9,15 @@ function AddImagesForm() {
     const [isSelected, setIsSelected] = useState(false)
     let filesArr = []
 
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
+        setLoading(true)
         async function getFilesURLFromStorage() {
             setImageFileURL(await firebase.getAllLandingFilesFromDB())
         }       
         getFilesURLFromStorage()
+        setTimeout(() => setLoading(false), 1000)
     }, [])
 
     function getFilesAdded(e) {
@@ -22,18 +27,18 @@ function AddImagesForm() {
 
     async function fileAdded(e) {
         async function saveURL(i) {
-            console.log(filesArr[i].name, filesArr[i].type, await firebase.getLandingImagesFromStorage(filesArr[i].name))
             firebase.saveLandingFileToDB(filesArr[i].name, filesArr[i].type, await firebase.getLandingImagesFromStorage(filesArr[i].name))
         }
         e.preventDefault()
         if (filesArr.length <= 0) return alert('Ingen filer valgt')
+        setLoading(true)
         for (let i = 0; i < filesArr.length; i++) {
             firebase.uploadImagesToLandingStorage(filesArr[i].name, filesArr[i], filesArr[i].type)
             .then(setTimeout(() => { 
                 saveURL(i)
             }, 1000))
         }
-        setTimeout(() => window.location.reload(), 2000)
+        setTimeout(() => { window.location.reload(); setLoading(false)}, 2000)
     }
 
     function deleteImage(e) {
@@ -47,7 +52,6 @@ function AddImagesForm() {
 
     function displayImages() {
         return imageFileURL.map((element, index) => {
-            console.log(element)
             return (
                 <div key={index} className="admin-image-container">
                     <li id="admin-image-list">
@@ -66,7 +70,7 @@ function AddImagesForm() {
                 <input type="submit" value="upload" onClick={fileAdded}></input>
             </form>
             <ul>
-                {displayImages()}
+                {loading ? <Loader></Loader> : displayImages()}
             </ul>
         </div>
     );

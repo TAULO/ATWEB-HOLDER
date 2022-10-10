@@ -1,4 +1,4 @@
-import { FirebaseError, initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, deleteDoc, doc, setDoc, orderBy, query } from 'firebase/firestore/lite';
 import { uploadBytes, getStorage, ref, getDownloadURL } from "firebase/storage"
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth"
@@ -221,7 +221,7 @@ class Firebase {
     }
 
     async getUser() {
-        return auth.currentUser
+        return auth.currentUser;
     }
 }
 export default Firebase

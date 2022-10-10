@@ -9,10 +9,7 @@ import InstagramImages from './components/InstagramImages/InstagramImages';
 import ExhibitionTemplate from './components/Exhibition/ExhibitionTemplate';
 import Header from "./components/header/Header"
 import Footer from './components/footer/footer';
-import AddImagesForm from "./components/_admin/AddImageForm/AddImagesForm"
-import AddExhibtionsForm from './components/_admin/AddExhibitionsForm/AddExhibtionsForm';
-import AdminLandingPage from './components/_admin/AdminLandingPage/AdminLandingPage';
-
+import AdminContainer from './components/_admin/AdminContainer/AdminContainer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,11 +32,7 @@ root.render(
           </TransitionGroup>
         }} path='/udstillinger' element={<ExhibitionTemplate></ExhibitionTemplate>}></Route>
       </Routes>
-    <Routes>
-      <Route path='/admin' element={<AdminLandingPage></AdminLandingPage>}></Route>
-      <Route path='/admin/tilfoj-billeder' element={<AddImagesForm></AddImagesForm>}></Route>
-      <Route path='/admin/tilfoj-udstillinger' element={<AddExhibtionsForm></AddExhibtionsForm>}></Route>
-    </Routes>
+      <AdminContainer></AdminContainer>
     <Footer />
   </Router>
 );

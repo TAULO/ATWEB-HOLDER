@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import "./ExhibitionTemplate.css"
 import SubscribeForm from "../subscribeForm/SubscribeForm";
 import FilterNewestBtn from "./FilterNewestBtn";
+import Loader from "../SpinningLoader/SpinningLoader"
 
 function ExhibitionTemplate() {
     const firebase = new Firebase()
@@ -11,12 +12,16 @@ function ExhibitionTemplate() {
     const [exhibition, setExhibition] = useState([])
     const [filterIsVisible, setFilterIsVisible] = useState(false)
 
+    const [loading, setLoading] = useState(false)
+    const backgroundNodeRef = useRef()
+
     const filterIconRef = useRef(null)
     const filterItemsRef = useRef(null)
     const filterItemsContainer = useRef(null)
 
     // fetch exhibitions from firebase db
     useEffect(() => {
+        setLoading(true)
         async function fetchExhibitions() {
             setExhibition(await firebase.getExhibitonFromDB())
         }
@@ -41,6 +46,7 @@ function ExhibitionTemplate() {
         deleteExpiredExhibitions()
     }, [exhibition])
 
+    // set the show the filter when mouse hover 2 seconds after page load
     useEffect(() => {
         setTimeout(() => {
             filterItemsContainer.current.addEventListener("mouseover", () => {
@@ -49,7 +55,6 @@ function ExhibitionTemplate() {
             filterItemsContainer.current.addEventListener("mouseleave", () => {
                 filterItemsRef.current.style.display = "none"
             })
-            
         }, 2000)
     }, [])
 
@@ -88,8 +93,13 @@ function ExhibitionTemplate() {
     }
    
     if (exhibition.length > 0) {
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000);
         return (
-            <div className="exhibiton-landing-container">
+            loading ? <Loader backgroundNode={backgroundNodeRef.current}></Loader>
+            :
+            <div className="exhibiton-landing-container" ref={backgroundNodeRef}>
                 <FilterNewestBtn {...filterNewestBtnProps}></FilterNewestBtn>
                     {exhibition.map(element => {
                         return( 

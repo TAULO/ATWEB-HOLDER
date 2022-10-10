@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 import "./AddExhibitionsForm.css"
 import Firebase from "../../../service/Firebase/FirebaseService";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import Loader from "../../SpinningLoader/SpinningLoader"
 
 function AddExhibtionsForm() {
     const PORT = 510
 
     const firebase = new Firebase()
-    const navigate = useNavigate()
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -18,31 +16,16 @@ function AddExhibtionsForm() {
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
     const [file, setFile] = useState([])
-
     const [exhibition, setExhibition] = useState([])
 
-    const [user, setUser] = useState()
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         async function fetchExhibitions() {
             const firebase = new Firebase()
             setExhibition(await firebase.getExhibitonFromDB())
         }    
-        fetchExhibitions()    
-    }, [])
-
-    useEffect(() => {
-        async function fetchUser() {
-            const firebase = new Firebase()
-            setUser(await firebase.getUser())
-            console.log("User: " + user);
-        }    
-        fetchUser()  
-        setTimeout(() => {
-            if (user === undefined) {
-                navigate("/admin")
-            }  
-        }, 3000);
+        fetchExhibitions()
     }, [])
 
     const sendNewExhibitionEmail = async () => {
@@ -70,9 +53,10 @@ function AddExhibtionsForm() {
 
     const uploadExhibition = async (e) => {
         e.preventDefault()
+        setLoading(true)
         firebase.uploadImagesToExhibitonStorage(file[0].name, file[0], file[0].type)
         .then(firebase.saveExhiptionToDB(title.trim(), description, address, startDate, endDate, await firebase.getExhibitonImagesFromStorage(file[0].name)))
-        setTimeout(() => window.location.reload(), 1000);
+        setTimeout(() => { window.location.reload(); setLoading(false) }, 1000 );
         sendNewExhibitionEmail()
     }
     
@@ -82,9 +66,9 @@ function AddExhibtionsForm() {
         if(!window.confirm("Er du sikker på at du vil slette " + titleElementText)) {
             return 
         } else {
+
             firebase.deleteExhiptionFromDB(titleElementText).then(setTimeout(() => {document.location.reload()}, 500))
             firebase.deleteExhibitionFileFromDB(titleElementText)
-            
         }
     }
 
@@ -117,6 +101,8 @@ function AddExhibtionsForm() {
        document.getElementById("exhibiton-end-date-text").innerHTML = e.target.value.replace("T", " kl ")
     }
     return (
+        loading ? <Loader></Loader> 
+        :
         <div className="admin-exhibition-form-container">
             <form action={`http://localhost:${PORT}/new-exhibition`} method="POST">
                 <div className="admin-exhibition-form-flex-container">
